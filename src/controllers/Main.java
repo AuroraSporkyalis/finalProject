@@ -13,6 +13,8 @@ public class Main {
 
         switch (x) {
             case 1:
+                // temporary output statements
+
                 System.out.println(x); // view saved recipes
                 break;
             case 2:
@@ -109,16 +111,9 @@ public class Main {
     }
 
     public static void main(String[] args) throws Exception {
-
-        //Recipe fish = new Recipe("spicy fish");
-        //createRecipeMenu(fish);
-        //System.out.println(fish.getIngredient());
         
         while(go == true) {
             mainMenu();
         }
     }
 }
-
-// output numbered list of recipes to a file along with actual recipes
-// Create new recipe, modify the list, then import that list for the menu
