@@ -1,47 +1,38 @@
 package models;
 
-import java.util.ArrayList;
-
 public class Recipe {
 
-    private String name;
-    private ArrayList<String> ingredients;
-    private String ingredient;
+    public String title;
+    private String ingredients;
     private String directions;
-    private int time; // (00:00) deal with hours and minutes.
+    private String time; // deal with hour and minute formatting eventually.
     private String notes;
+    public int id;
     
 
-    public Recipe(String name) {
-        this.name = name;
+    public Recipe(int id, String time, String title, String ingredients, String directions) {
+        this.title = title;
+        this.id = id;
+        this.time = time;
+        this.ingredients = ingredients;
+        this.directions = directions;
     }
 
-
-
     public String getName() {
-        return name;
+        return title;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.title = name;
     }
 
 
-    public void setIngredient(String ingredient) {
-        this.ingredient = ingredient;
+    public void setIngredient(String ingredients) {
+        this.ingredients = ingredients;
     }
 
     public String getIngredient() {
-        return ingredient;
-    }
-
-
-    public ArrayList<String> getIngredients() {
         return ingredients;
-    }
-
-    public void setIngredients(ArrayList<String> ingredients) {
-        this.ingredients = ingredients;
     }
 
 
@@ -54,11 +45,11 @@ public class Recipe {
     }
 
 
-    public int getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(int time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
@@ -69,5 +60,14 @@ public class Recipe {
 
     public void setNotes(String notes) {
         this.notes = notes;
+    }
+
+    @Override
+    public String toString(){
+        return title;
+    }
+
+    public String out() {
+        return title + "\n--------------------------\n" + "Time: " + time + "\n\nIngredients:\n" + ingredients + "\nDirections:\n" + directions;
     }
 }

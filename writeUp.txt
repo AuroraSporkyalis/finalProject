@@ -1,0 +1,17 @@
+1. What was the hardest part about this project? Which part of building your app gave you the most difficultly? 
+
+I overcomplicated things a lot by trying to think about each ingredient as a separate element instead of all part of one string that included line breaks. 
+
+2. Where did your inspiration for the app? 
+
+I like cooking and baking and frequently forget to save recipes, or save them in random notes that I forget about. 
+
+3. Go back and look at your project proposal. (For those that gave me several, I'm talking about the proposal for the app you eventually built.) How close to this proposal do you feel you ended up getting? For those parts that you didn't do, why? (Remember that I never intended for you be able to complete the whole thing.)  
+
+I didn’t implement a way to edit existing recipes like I wanted, and I forgot about adding categories. 
+
+4. What would you need to explore or learn in order to finish this app? Is that something you can see yourself doing in the future? 
+
+I would like to continue and finish my partially designed GUI. 
+
+When I chose this project I was unsure of exactly what would be covered during the semester that could be applied, and I didn’t anticipate how much learning about databases would simplify it, so looking back I wish I would have found ways to add more complexity. 

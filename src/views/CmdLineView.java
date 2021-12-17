@@ -4,78 +4,70 @@ import models.Recipe;
 
 public class CmdLineView {
 
+
     public int getIntInput() {
         Scanner input = new Scanner(System.in);
-        int x = input.nextInt();
-        return x;
+            int x = input.nextInt();
+            return x;
     }
 
-// output first menu, want to see saved recipes or make a new one?
     public void showMainMenu() {
         System.out.println("1. View saved recipes\n2. Create new recipe.\n3. Exit");
-        /*
-        View saved recipes
-        Create new recipe
-        Exit
-        */
     }
 
-// output list of saved recipes I guess
     public void showRecipeMenu() {
-        System.out.println("1. View all recipes\n2. Search recipes");
-        /*
-        View all recipes as a menu
-        Search recipes
-        */
-    }
-
-
-// edit or delete a recipe
-    public void showRecipeOptions() {
-        System.out.println("1. View\n2. Edit\n3. Delete");
-        /*
-        View recipe
-        Edit recipe
-        Delete recipe
-        */
-    }
-
-
-// main recipe creation menu
-    public void showCreationMenu(){
-        System.out.println("1. add or edit title.");
-        System.out.println("2. add or edit ingredients.");
-        System.out.println("3. add or edit directions.");
-        System.out.println("4. add or edit time.");
-        System.out.println("5. add or edit notes.");
-        System.out.println("6. view recipe.");
-        System.out.println("7. finish and save.");
-        System.out.println("8. cancel and exit.");
-    /*
-    (1) add or edit title
-    (2) add ingredient
-    (3) add directions
-    (4) add time
-    (5) add notes
-    (6) view recipe
-    (7) finish and save
-    */ 
-    }
-
-    public void showRecipe(Recipe r) {
-        System.out.println("-----------------------");
-        System.out.println("Title: " + r.getName());
-        System.out.println("-----------------------");
-        System.out.println("Time: " + r.getTime());
-        System.out.println("Ingredient: " + r.getIngredient());
-        System.out.println("Directions: " + r.getDirections());
-        System.out.println("Notes: " + r.getNotes());
-        // print out title, time, ingredients, directions, notes
+        System.out.println("----------------");
+        System.out.println("\n1. Enter entry number to view recipe\n2. Enter entry number to delete recipe\n3. Return to main menu\n4. Exit program");
     }
 
     public String getStringInput() {
         Scanner input = new Scanner(System.in);
-        String x = input.nextLine();
-        return x;
+            String x = input.nextLine();
+            return x;
+    }
+
+    public String getContinue() {
+        Scanner input = new Scanner(System.in);
+            System.out.println("Enter y to add an ingredient, or any other character to exit");
+            String x = input.next();
+            return x.toLowerCase();
+    }
+
+    // print out list of recipes
+    public void printDatabase(int i, Recipe recipe) {
+        System.out.println(i + ": " + recipe.toString());
+    }
+
+    // print out selected recipe details
+    public void showRecipe(Recipe recipe) {
+        System.out.println(recipe.out());
+    }
+
+    public String timeInput() {
+        Scanner input = new Scanner(System.in);
+            System.out.println("time:");
+            String time = input.nextLine();
+            return time;
+    }
+
+    public String titleInput() {
+        Scanner input = new Scanner(System.in);
+            System.out.println("title:");
+            String title = input.nextLine();
+            return title;
+    }
+
+    public String ingredientInput() {
+        Scanner input = new Scanner(System.in);
+            System.out.println("ingredient:");
+            String ingredients = input.nextLine();
+            return ingredients;
+    }
+
+    public String directionsInput() {
+        Scanner input = new Scanner(System.in);
+            System.out.println("directions:");
+            String ingredients = input.nextLine();
+            return ingredients;
     }
 }

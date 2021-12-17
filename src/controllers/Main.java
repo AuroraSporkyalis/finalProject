@@ -2,118 +2,77 @@ package controllers;
 import models.Recipe;
 import views.CmdLineView;
 
+import java.util.ArrayList;
+
 public class Main {
     static CmdLineView view = new CmdLineView();
     static boolean go = true;
 
-    public static Recipe mainMenu() {
+    static DBConnect db = new DBConnect("recipes.db");
 
-        view.showMainMenu();
-        int x = view.getIntInput();
-
-        switch (x) {
-            case 1:
-                // temporary output statements
-
-                System.out.println(x); // view saved recipes
-                break;
-            case 2:
-                System.out.println(x); // create new recipe
-                Recipe newRecipe = new Recipe("null");
-                createRecipeMenu(newRecipe);
-                return newRecipe;
-            case 3:
-                System.out.println(x); // exit
-                break;
-            default:
-                break;
-        }
-        return null;
-    }
-
-    public void viewRecipeMenu(int x) {
-        view.showRecipeMenu();
-        switch (x) {
-            case 1:
-                System.out.println(x); // view all
-                break;
-            case 2:
-                System.out.println(x); // search
-                break;
-            default:
-                break;
-        }
-    }
-
-    public void recipeMenu(int x) {
-        view.showRecipeOptions();
-        switch (x) {
-            case 1:
-                System.out.println(x); // view
-                break;
-            case 2:
-                System.out.println(x); // edit
-                break;
-            case 3:
-                System.out.println(x); // delete
-                break;
-            default:
-                break;
-        }
-    }
-
-    public static void createRecipeMenu(Recipe r) {
-
-        int x = 1;
-
-        while(x != 8 && x != 7) {
-            view.showCreationMenu();
-            x = view.getIntInput();
-            switch (x) {
-                case 1:
-                    System.out.println("Enter a title"); // name
-                    r.setName(view.getStringInput());
-                    break;
-                case 2:
-                    // ingredient
-                    System.out.println("Enter an ingredient");
-                    r.setIngredient(view.getStringInput());
-                    break;
-                case 3:
-                    System.out.println(x); // directions
-                    System.out.println("Enter directions");
-                    r.setDirections(view.getStringInput());
-                    break;
-                case 4:
-                    System.out.println(x); // time
-                    System.out.println("Enter a time");
-                    r.setTime(view.getIntInput());
-                    break;
-                case 5:
-                    System.out.println(x); // notes
-                    System.out.println("Enter notes");
-                    r.setNotes(view.getStringInput());
-                    break;
-                case 6:
-                    System.out.println(x); // view
-                    view.showRecipe(r);
-                    break;
-                case 7:
-                    System.out.println(x); // finish
-                    break;
-                case 8:
-                    System.out.println(x); // cancel
-                    break;
-                default:
-                    break;
-            }
-        } 
-    }
 
     public static void main(String[] args) throws Exception {
-        
-        while(go == true) {
-            mainMenu();
+        db.createNewDatabase();
+        db.addTables();
+
+        menu();
+    }
+
+    public static void addRecipe() {
+        System.out.println("addRecipe");
+
+        String title = view.titleInput();
+
+        String time = view.timeInput();
+
+        String ingredientList = "";
+        while(view.getContinue().equals("y")) {
+            ingredientList += view.ingredientInput() + "\n";
         }
+
+        String directions = view.directionsInput();
+
+        db.addData(time, title, ingredientList, directions);
+
+        menu();
+    }
+
+
+    public static void showRecipes() {
+        ArrayList<Recipe> theRecipes = db.getData();
+        int i = 0;
+        for(Recipe recipe : theRecipes){
+            view.printDatabase(i, recipe);
+            i++;
+        }
+        // select recipe by ID number to view
+        view.showRecipeMenu();
+
+        // view or delete recipe
+        int x = view.getIntInput();
+        switch(x) {
+            case 1: view.showRecipe(theRecipes.get(view.getIntInput()));
+                break;
+            case 2: db.delete(view.getIntInput());
+                break;
+            case 3: menu();
+                break;
+            case 4: System.exit(0);
+            default: System.out.println("Error");
+        }
+        menu();
+    }
+
+    public static void menu() {
+        System.out.println("1. Add recipe\n2. Show recipes\n3. Exit");
+        switch(view.getIntInput()) {
+            case 1: addRecipe();
+                break;
+            case 2: showRecipes();
+                break;
+            case 3: System.exit(0);
+                break;
+            default: System.out.println("Error");
+       }
     }
 }
